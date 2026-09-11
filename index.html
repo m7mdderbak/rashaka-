@@ -3,68 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>رشاقة AI - Rashaka AI</title>
+    <title>رشاقة AI</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Cairo Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            50: '#f0fdf4',
-                            400: '#4ade80',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d'
-                        },
-                        dark: {
-                            800: '#1e293b',
-                            900: '#0f172a',
-                            950: '#020617'
-                        }
+                        brand: { 500: '#22c55e', 600: '#16a34a' },
+                        dark: { 800: '#1e293b', 900: '#0f172a', 950: '#020617' }
                     },
-                    fontFamily: {
-                        cairo: ['Cairo', 'sans-serif']
-                    }
+                    fontFamily: { cairo: ['Cairo', 'sans-serif'] }
                 }
             }
         }
     </script>
 
     <style>
-        * {
-            box-sizing: border-box;
-            touch-action: manipulation;
-        }
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #020617;
-            color: #f8fafc;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .active-tab {
-            color: #22c55e;
-            border-top: 3px solid #22c55e;
-        }
+        * { box-sizing: border-box; touch-action: manipulation; }
+        body { font-family: 'Cairo', sans-serif; background-color: #020617; color: #f8fafc; user-select: none; }
+        .glass-panel { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .active-tab { color: #22c55e; border-top: 3px solid #22c55e; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between pb-20">
 
-    <!-- ONBOARDING MODAL -->
+    <!-- شاشة إدخال البيانات لأول مرة -->
     <div id="onboarding-screen" class="fixed inset-0 z-50 bg-dark-950 flex flex-col justify-center items-center p-4 overflow-y-auto">
         <div class="w-full max-w-md space-y-5 my-auto">
             <div class="text-center space-y-2">
@@ -93,11 +65,11 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">مستوى النشاط والمجهود اليومي</label>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">مستوى النشاط اليومي</label>
                     <select id="init-activity" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-white text-xs focus:outline-none focus:border-brand-500">
                         <option value="1.2">قليل الحركة (مكتبي / نوم)</option>
-                        <option value="1.375">متوسط (حركة خفيفة + تمارين 1-3 أيام)</option>
-                        <option value="1.55" selected>نشيط (عمل حركي/سوبرماركت + تمارين 3-5 أيام)</option>
+                        <option value="1.375">متوسط (تمرين 1-3 أيام)</option>
+                        <option value="1.55" selected>نشيط (عمل حركي / سوبرماركت + تمرين)</option>
                         <option value="1.725">نشيط جداً (عمل شاق + تمرين يومي)</option>
                     </select>
                 </div>
@@ -105,20 +77,20 @@
                 <div>
                     <label class="block text-xs font-bold text-slate-300 mb-1">الهدف الرئيسي</label>
                     <select id="init-goal" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-white text-xs focus:outline-none focus:border-brand-500">
-                        <option value="lose">تنحيف وتنشيف الجسم (عجز 500 سعرة)</option>
+                        <option value="lose">تنحيف وتنشيف الجسم (-500 سعرة)</option>
                         <option value="maintain">الحفاظ على الوزن الحالي</option>
                         <option value="gain">تضخيم وبناء عضلات (+400 سعرة)</option>
                     </select>
                 </div>
 
                 <button type="submit" class="w-full bg-gradient-to-r from-brand-500 to-emerald-500 hover:from-brand-600 hover:to-emerald-600 font-black text-dark-950 py-3.5 rounded-2xl shadow-lg transition active:scale-95 text-sm mt-2">
-                    بدء استخدام التطبيق <i class="fa-solid fa-arrow-left mr-1"></i>
+                    بدء استخدام تطبيق رشاقة AI <i class="fa-solid fa-arrow-left mr-1"></i>
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- MAIN APP HEADER -->
+    <!-- الشريط العلوي للتطبيق -->
     <header class="sticky top-0 z-40 glass-panel px-4 py-3 flex items-center justify-between border-b border-slate-800">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-500 to-emerald-400 flex items-center justify-center text-dark-950 text-xl font-black shadow-md shadow-brand-500/20">
@@ -134,31 +106,27 @@
         </button>
     </header>
 
-    <!-- CONTENT BODY -->
+    <!-- محتوى التطبيق -->
     <main class="max-w-md mx-auto w-full p-4 flex-1">
 
-        <!-- TAB 1: CALORIES & DIET TRACKER -->
+        <!-- 1. واجهة التغذية والوجبات -->
         <section id="tab-dashboard" class="space-y-5">
-            
-            <!-- Daily Summary Card -->
             <div class="glass-panel p-5 rounded-3xl relative overflow-hidden shadow-2xl border border-slate-800">
                 <div class="flex justify-between items-start mb-4">
                     <div>
-                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">هدف السعرات اليومي</span>
+                        <span class="text-xs font-bold text-slate-400 uppercase">هدف السعرات اليومي</span>
                         <h2 class="text-3xl font-extrabold text-white mt-1" id="ui-target-calories">0 <span class="text-xs font-normal text-slate-400">سعرة</span></h2>
                     </div>
                     <div class="text-left">
-                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">المتبقي اليوم</span>
+                        <span class="text-xs font-bold text-slate-400 uppercase">المتبقي اليوم</span>
                         <h3 class="text-2xl font-black text-brand-500 mt-1" id="ui-remaining-calories">0</h3>
                     </div>
                 </div>
 
-                <!-- Progress Bar -->
                 <div class="w-full bg-slate-800/80 h-3.5 rounded-full overflow-hidden mb-5 p-0.5 border border-slate-700/50">
                     <div id="ui-calorie-bar" class="bg-gradient-to-r from-brand-500 to-emerald-400 h-full w-0 rounded-full transition-all duration-500"></div>
                 </div>
 
-                <!-- Macros Breakdown -->
                 <div class="grid grid-cols-3 gap-2 text-center text-xs">
                     <div class="bg-slate-900/80 p-3 rounded-2xl border border-slate-800">
                         <span class="text-slate-400 block mb-1 font-semibold">بروتين</span>
@@ -175,7 +143,6 @@
                 </div>
             </div>
 
-            <!-- Add Meal Button -->
             <button onclick="openAddMealModal()" class="w-full glass-panel hover:bg-slate-800/90 p-4 rounded-2xl flex items-center justify-center gap-3 border border-brand-500/40 text-white font-bold transition active:scale-95 shadow-lg shadow-brand-500/10">
                 <div class="w-9 h-9 rounded-full bg-brand-500/20 flex items-center justify-center text-brand-500">
                     <i class="fa-solid fa-plus text-lg"></i>
@@ -183,28 +150,22 @@
                 <span>إضافة وجبة أو أكلة جديدة</span>
             </button>
 
-            <!-- Meals Logged Today -->
             <div class="space-y-3">
                 <div class="flex justify-between items-center px-1">
                     <h3 class="font-black text-slate-200 text-base">وجبات اليوم المسجلة</h3>
                     <button onclick="clearTodayMeals()" class="text-xs text-rose-400 hover:underline font-semibold">مسح الكل</button>
                 </div>
-
-                <div id="meals-list" class="space-y-2">
-                    <!-- Populated via JS -->
-                </div>
+                <div id="meals-list" class="space-y-2"></div>
             </div>
-
         </section>
 
-        <!-- TAB 2: GYM & WORKOUTS -->
+        <!-- 2. واجهة تمارين الجيم -->
         <section id="tab-workouts" class="space-y-5 hidden">
             <div>
-                <h2 class="text-2xl font-black text-white">برنامج الجيم والتنحيف</h2>
-                <p class="text-xs text-slate-400">تمارين احترافية مشروحة بالتفصيل لجميع العضلات</p>
+                <h2 class="text-2xl font-black text-white">برنامج التمارين للجيم</h2>
+                <p class="text-xs text-slate-400">تمارين مشروحة بالتفصيل لجميع العضلات</p>
             </div>
 
-            <!-- Categories Scroll -->
             <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1" id="workout-tabs">
                 <button onclick="filterWorkouts('all', this)" class="cat-btn px-4 py-2.5 bg-brand-500 text-dark-950 font-black rounded-2xl text-xs whitespace-nowrap shadow-md">الكل</button>
                 <button onclick="filterWorkouts('chest', this)" class="cat-btn px-4 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-2xl text-xs whitespace-nowrap">الصدر</button>
@@ -214,17 +175,14 @@
                 <button onclick="filterWorkouts('abs', this)" class="cat-btn px-4 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-2xl text-xs whitespace-nowrap">البطن والكارديو</button>
             </div>
 
-            <!-- Exercises Container -->
-            <div id="workouts-container" class="space-y-4">
-                <!-- Populated via JS -->
-            </div>
+            <div id="workouts-container" class="space-y-4"></div>
         </section>
 
-        <!-- TAB 3: BODY STATS -->
+        <!-- 3. واجهة الحسابات والتفاصيل -->
         <section id="tab-stats" class="space-y-5 hidden">
             <div>
-                <h2 class="text-2xl font-black text-white">تحليل الجسم والأيض</h2>
-                <p class="text-xs text-slate-400">حسابات دقيقة قائمة على معادلة Mifflin-St Jeor</p>
+                <h2 class="text-2xl font-black text-white">تحليل حرق الجسم</h2>
+                <p class="text-xs text-slate-400">حساب السعرات وفقاً لمعادلة Mifflin-St Jeor</p>
             </div>
 
             <div class="glass-panel p-5 rounded-3xl space-y-4 border border-slate-800">
@@ -236,16 +194,6 @@
                     <div class="bg-slate-900/90 p-4 rounded-2xl border border-slate-800">
                         <span class="text-[11px] text-slate-400 font-bold block mb-1">الحرق مع النشاط (TDEE)</span>
                         <span class="text-2xl font-black text-brand-500" id="calc-tdee">0</span> <span class="text-xs text-slate-400">سعرة</span>
-                    </div>
-                </div>
-
-                <div class="p-4 bg-emerald-950/40 rounded-2xl border border-emerald-500/30 space-y-2">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-fire-flame-curved text-2xl text-brand-500"></i>
-                        <div>
-                            <h4 class="text-sm font-bold text-white">خطة عجز السعرات للتنحيف</h4>
-                            <p class="text-xs text-slate-300 mt-0.5">خسارة آمنة ومستمرة لدهون الجسم مع حماية العضلات.</p>
-                        </div>
                     </div>
                 </div>
 
@@ -262,7 +210,7 @@
 
     </main>
 
-    <!-- BOTTOM NAVIGATION -->
+    <!-- شريط التنقل السفلي -->
     <nav class="fixed bottom-0 left-0 right-0 glass-panel border-t border-slate-800 px-6 py-2.5 z-40">
         <div class="max-w-md mx-auto flex justify-between items-center">
             <button onclick="switchTab('dashboard')" id="nav-dashboard" class="flex flex-col items-center gap-1 active-tab py-1 px-4">
@@ -280,20 +228,18 @@
         </div>
     </nav>
 
-    <!-- MODAL: ADD MEAL -->
+    <!-- نافذة إضافة وجبة -->
     <div id="modal-add-meal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden">
         <div class="glass-panel bg-slate-900 w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 space-y-4 border border-slate-800">
             <div class="flex justify-between items-center border-b border-slate-800 pb-3">
                 <h3 class="font-bold text-lg text-white">إضافة وجبة أو أكلة جديدة</h3>
                 <button onclick="closeAddMealModal()" class="text-slate-400 hover:text-white p-2"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
-            
-            <form onsubmit="handleManualMealSubmit(event)" class="space-y-3">
+            <form onsubmit="handleMealSubmit(event)" class="space-y-3">
                 <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">اسم الوجبة / الأكلة</label>
-                    <input type="text" id="meal-name" required placeholder="مثال: صدر دجاج 200غ مع أرز" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
+                    <label class="block text-xs font-bold text-slate-300 mb-1">اسم الوجبة</label>
+                    <input type="text" id="meal-name" required placeholder="مثال: صدر دجاج مع أرز" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
                 </div>
-
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-1">السعرات (kcal)</label>
@@ -304,7 +250,6 @@
                         <input type="number" id="meal-protein" value="0" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
                     </div>
                 </div>
-
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-1">الكارب (جرام)</label>
@@ -315,18 +260,37 @@
                         <input type="number" id="meal-fat" value="0" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
                     </div>
                 </div>
-
-                <button type="submit" class="w-full bg-brand-500 hover:bg-brand-600 font-black text-dark-950 py-3.5 rounded-xl transition mt-2">حفظ الوجبة فوراً</button>
+                <button type="submit" class="w-full bg-brand-500 hover:bg-brand-600 font-black text-dark-950 py-3.5 rounded-xl transition mt-2">حفظ الوجبة</button>
             </form>
         </div>
     </div>
 
-    <!-- MODAL: EDIT PROFILE -->
+    <!-- نافذة تعديل البيانات -->
     <div id="modal-profile" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden">
         <div class="glass-panel bg-slate-900 w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 space-y-4 border border-slate-800">
             <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-                <h3 class="font-bold text-lg text-white">تعديل معلومات الجسم والهدف</h3>
+                <h3 class="font-bold text-lg text-white">تعديل معلومات الجسم</h3>
                 <button onclick="closeProfileModal()" class="text-slate-400 hover:text-white p-2"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
-            
-            <form onsubmit="saveProfileSettings(event
+            <form onsubmit="saveProfileSettings(event)" class="space-y-3">
+                <div class="grid grid-cols-3 gap-2">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">الوزن</label>
+                        <input type="number" id="prof-weight" required step="0.1" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none focus:border-brand-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">الطول</label>
+                        <input type="number" id="prof-height" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none focus:border-brand-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">العمر</label>
+                        <input type="number" id="prof-age" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none focus:border-brand-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">النشاط اليومي</label>
+                    <select id="prof-activity" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-3 text-white text-xs focus:outline-none focus:border-brand-500">
+                        <option value="1.2">قليل الحركة</option>
+                        <option value="1.375">متوسط</option>
+                        <option value="1.55">نشيط</option>
+                        <option 
