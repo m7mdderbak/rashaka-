@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>الزين برو - Zein Fitness AI</title>
+    <title>رشاقة AI - Rashaka AI</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -16,13 +16,12 @@
             theme: {
                 extend: {
                     colors: {
-                        zein: {
+                        brand: {
                             50: '#f0fdf4',
                             400: '#4ade80',
                             500: '#22c55e',
                             600: '#16a34a',
-                            700: '#15803d',
-                            gold: '#f59e0b'
+                            700: '#15803d'
                         },
                         dark: {
                             800: '#1e293b',
@@ -51,7 +50,7 @@
             -webkit-tap-highlight-color: transparent;
         }
         .glass-panel {
-            background: rgba(15, 23, 42, 0.75);
+            background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
@@ -65,37 +64,37 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between pb-20">
 
-    <!-- ONBOARDING MODAL (First Time Setup) -->
-    <div id="onboarding-screen" class="fixed inset-0 z-50 bg-dark-950 flex flex-col justify-center items-center p-6 overflow-y-auto">
-        <div class="w-full max-w-md space-y-6">
+    <!-- ONBOARDING MODAL -->
+    <div id="onboarding-screen" class="fixed inset-0 z-50 bg-dark-950 flex flex-col justify-center items-center p-4 overflow-y-auto">
+        <div class="w-full max-w-md space-y-5 my-auto">
             <div class="text-center space-y-2">
-                <div class="w-16 h-16 bg-gradient-to-tr from-zein-600 to-emerald-400 rounded-3xl mx-auto flex items-center justify-center text-dark-950 text-3xl font-black shadow-lg shadow-zein-500/30">
-                    <i class="fa-solid fa-crown"></i>
+                <div class="w-16 h-16 bg-gradient-to-tr from-brand-600 to-emerald-400 rounded-3xl mx-auto flex items-center justify-center text-dark-950 text-3xl font-black shadow-lg shadow-brand-500/30">
+                    <i class="fa-solid fa-bolt"></i>
                 </div>
-                <h2 class="text-3xl font-black text-white">مرحباً بك في <span class="text-zein-500">الزين برو</span></h2>
-                <p class="text-sm text-slate-400">دعنا نضبط حسابات جسمك وسعراتك بدقة أولاً</p>
+                <h2 class="text-3xl font-black text-white">مرحباً بك في <span class="text-brand-500">رشاقة AI</span></h2>
+                <p class="text-xs text-slate-400">أدخل بياناتك لحساب السعرات والعجز اليومي بدقة</p>
             </div>
 
-            <form onsubmit="finishOnboarding(event)" class="glass-panel p-6 rounded-3xl space-y-4 border border-slate-800">
+            <form id="form-onboarding" onsubmit="finishOnboarding(event)" class="glass-panel p-5 rounded-3xl space-y-4 border border-slate-800">
                 <div>
                     <label class="block text-xs font-bold text-slate-300 mb-1">الوزن الحالي (كغم)</label>
-                    <input type="number" id="init-weight" required step="0.5" placeholder="مثال: 69" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-zein-500">
+                    <input type="number" id="init-weight" required step="0.1" min="30" max="300" placeholder="مثال: 69" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-brand-500">
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-1">الطول (سم)</label>
-                        <input type="number" id="init-height" required placeholder="مثال: 166" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-zein-500">
+                        <input type="number" id="init-height" required min="100" max="250" placeholder="مثال: 166" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-brand-500">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-1">العمر (سنوات)</label>
-                        <input type="number" id="init-age" required placeholder="مثال: 19" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-zein-500">
+                        <input type="number" id="init-age" required min="10" max="100" placeholder="مثال: 19" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-brand-500">
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-xs font-bold text-slate-300 mb-1">مستوى النشاط والمجهود اليومي</label>
-                    <select id="init-activity" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-white text-sm focus:outline-none focus:border-zein-500">
+                    <select id="init-activity" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-white text-xs focus:outline-none focus:border-brand-500">
                         <option value="1.2">قليل الحركة (مكتبي / نوم)</option>
                         <option value="1.375">متوسط (حركة خفيفة + تمارين 1-3 أيام)</option>
                         <option value="1.55" selected>نشيط (عمل حركي/سوبرماركت + تمارين 3-5 أيام)</option>
@@ -105,33 +104,33 @@
 
                 <div>
                     <label class="block text-xs font-bold text-slate-300 mb-1">الهدف الرئيسي</label>
-                    <select id="init-goal" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-white text-sm focus:outline-none focus:border-zein-500">
-                        <option value="lose">تنحيف وتنشيف الجسم (عجز سعرات 500)</option>
+                    <select id="init-goal" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-white text-xs focus:outline-none focus:border-brand-500">
+                        <option value="lose">تنحيف وتنشيف الجسم (عجز 500 سعرة)</option>
                         <option value="maintain">الحفاظ على الوزن الحالي</option>
                         <option value="gain">تضخيم وبناء عضلات (+400 سعرة)</option>
                     </select>
                 </div>
 
-                <button type="submit" class="w-full bg-gradient-to-r from-zein-500 to-emerald-500 hover:from-zein-600 hover:to-emerald-600 font-black text-dark-950 py-4 rounded-2xl shadow-lg transition active:scale-95 text-md mt-2">
-                    بدء استخدام التطبيق <i class="fa-solid fa-arrow-left mr-2"></i>
+                <button type="submit" class="w-full bg-gradient-to-r from-brand-500 to-emerald-500 hover:from-brand-600 hover:to-emerald-600 font-black text-dark-950 py-3.5 rounded-2xl shadow-lg transition active:scale-95 text-sm mt-2">
+                    بدء استخدام التطبيق <i class="fa-solid fa-arrow-left mr-1"></i>
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- MAIN APP APPBAR -->
+    <!-- MAIN APP HEADER -->
     <header class="sticky top-0 z-40 glass-panel px-4 py-3 flex items-center justify-between border-b border-slate-800">
         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-zein-500 to-emerald-400 flex items-center justify-center text-dark-950 text-xl font-black shadow-md shadow-zein-500/20">
-                <i class="fa-solid fa-crown"></i>
+            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-500 to-emerald-400 flex items-center justify-center text-dark-950 text-xl font-black shadow-md shadow-brand-500/20">
+                <i class="fa-solid fa-bolt"></i>
             </div>
             <div>
-                <h1 class="text-lg font-black tracking-wide leading-tight text-white">الزين <span class="text-zein-500">PRO</span></h1>
+                <h1 class="text-lg font-black tracking-wide leading-tight text-white">رشاقة <span class="text-brand-500">AI</span></h1>
                 <p class="text-[10px] text-slate-400">حاسبة السعرات وجداول الجيم</p>
             </div>
         </div>
-        <button onclick="openProfileModal()" class="p-2.5 rounded-2xl bg-slate-800/80 hover:bg-slate-700 text-zein-500 border border-slate-700/60 transition">
-            <i class="fa-solid fa-user-gear text-lg"></i>
+        <button onclick="openProfileModal()" class="p-2.5 rounded-2xl bg-slate-800/80 hover:bg-slate-700 text-brand-500 border border-slate-700/60 transition">
+            <i class="fa-solid fa-sliders text-lg"></i>
         </button>
     </header>
 
@@ -141,7 +140,7 @@
         <!-- TAB 1: CALORIES & DIET TRACKER -->
         <section id="tab-dashboard" class="space-y-5">
             
-            <!-- Summary Card -->
+            <!-- Daily Summary Card -->
             <div class="glass-panel p-5 rounded-3xl relative overflow-hidden shadow-2xl border border-slate-800">
                 <div class="flex justify-between items-start mb-4">
                     <div>
@@ -150,16 +149,16 @@
                     </div>
                     <div class="text-left">
                         <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">المتبقي اليوم</span>
-                        <h3 class="text-2xl font-black text-zein-500 mt-1" id="ui-remaining-calories">0</h3>
+                        <h3 class="text-2xl font-black text-brand-500 mt-1" id="ui-remaining-calories">0</h3>
                     </div>
                 </div>
 
                 <!-- Progress Bar -->
                 <div class="w-full bg-slate-800/80 h-3.5 rounded-full overflow-hidden mb-5 p-0.5 border border-slate-700/50">
-                    <div id="ui-calorie-bar" class="bg-gradient-to-r from-zein-500 to-emerald-400 h-full w-0 rounded-full transition-all duration-500"></div>
+                    <div id="ui-calorie-bar" class="bg-gradient-to-r from-brand-500 to-emerald-400 h-full w-0 rounded-full transition-all duration-500"></div>
                 </div>
 
-                <!-- Macros Breakdown Grid -->
+                <!-- Macros Breakdown -->
                 <div class="grid grid-cols-3 gap-2 text-center text-xs">
                     <div class="bg-slate-900/80 p-3 rounded-2xl border border-slate-800">
                         <span class="text-slate-400 block mb-1 font-semibold">بروتين</span>
@@ -176,9 +175,9 @@
                 </div>
             </div>
 
-            <!-- Action Buttons -->
-            <button onclick="openAddMealModal()" class="w-full glass-panel hover:bg-slate-800/90 p-4 rounded-2xl flex items-center justify-center gap-3 border border-zein-500/40 text-white font-bold transition active:scale-95 shadow-lg shadow-zein-500/10">
-                <div class="w-9 h-9 rounded-full bg-zein-500/20 flex items-center justify-center text-zein-500">
+            <!-- Add Meal Button -->
+            <button onclick="openAddMealModal()" class="w-full glass-panel hover:bg-slate-800/90 p-4 rounded-2xl flex items-center justify-center gap-3 border border-brand-500/40 text-white font-bold transition active:scale-95 shadow-lg shadow-brand-500/10">
+                <div class="w-9 h-9 rounded-full bg-brand-500/20 flex items-center justify-center text-brand-500">
                     <i class="fa-solid fa-plus text-lg"></i>
                 </div>
                 <span>إضافة وجبة أو أكلة جديدة</span>
@@ -192,7 +191,7 @@
                 </div>
 
                 <div id="meals-list" class="space-y-2">
-                    <!-- Populated Dynamically -->
+                    <!-- Populated via JS -->
                 </div>
             </div>
 
@@ -205,9 +204,9 @@
                 <p class="text-xs text-slate-400">تمارين احترافية مشروحة بالتفصيل لجميع العضلات</p>
             </div>
 
-            <!-- Muscle Categories Scroll -->
+            <!-- Categories Scroll -->
             <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1" id="workout-tabs">
-                <button onclick="filterWorkouts('all', this)" class="cat-btn px-4 py-2.5 bg-zein-500 text-dark-950 font-black rounded-2xl text-xs whitespace-nowrap shadow-md">الكل</button>
+                <button onclick="filterWorkouts('all', this)" class="cat-btn px-4 py-2.5 bg-brand-500 text-dark-950 font-black rounded-2xl text-xs whitespace-nowrap shadow-md">الكل</button>
                 <button onclick="filterWorkouts('chest', this)" class="cat-btn px-4 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-2xl text-xs whitespace-nowrap">الصدر</button>
                 <button onclick="filterWorkouts('back', this)" class="cat-btn px-4 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-2xl text-xs whitespace-nowrap">الظهر</button>
                 <button onclick="filterWorkouts('legs', this)" class="cat-btn px-4 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-2xl text-xs whitespace-nowrap">الأرجل</button>
@@ -217,11 +216,11 @@
 
             <!-- Exercises Container -->
             <div id="workouts-container" class="space-y-4">
-                <!-- Populated Dynamically -->
+                <!-- Populated via JS -->
             </div>
         </section>
 
-        <!-- TAB 3: BODY STATS & METRICS -->
+        <!-- TAB 3: BODY STATS -->
         <section id="tab-stats" class="space-y-5 hidden">
             <div>
                 <h2 class="text-2xl font-black text-white">تحليل الجسم والأيض</h2>
@@ -236,16 +235,16 @@
                     </div>
                     <div class="bg-slate-900/90 p-4 rounded-2xl border border-slate-800">
                         <span class="text-[11px] text-slate-400 font-bold block mb-1">الحرق مع النشاط (TDEE)</span>
-                        <span class="text-2xl font-black text-zein-500" id="calc-tdee">0</span> <span class="text-xs text-slate-400">سعرة</span>
+                        <span class="text-2xl font-black text-brand-500" id="calc-tdee">0</span> <span class="text-xs text-slate-400">سعرة</span>
                     </div>
                 </div>
 
                 <div class="p-4 bg-emerald-950/40 rounded-2xl border border-emerald-500/30 space-y-2">
                     <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-fire-flame-curved text-2xl text-zein-500"></i>
+                        <i class="fa-solid fa-fire-flame-curved text-2xl text-brand-500"></i>
                         <div>
                             <h4 class="text-sm font-bold text-white">خطة عجز السعرات للتنحيف</h4>
-                            <p class="text-xs text-slate-300 mt-0.5" id="calc-deficit-info">خسارة آمنة ومستمرة لدهون الجسم مع حماية العضلات.</p>
+                            <p class="text-xs text-slate-300 mt-0.5">خسارة آمنة ومستمرة لدهون الجسم مع حماية العضلات.</p>
                         </div>
                     </div>
                 </div>
@@ -263,7 +262,7 @@
 
     </main>
 
-    <!-- NAVIGATION BAR -->
+    <!-- BOTTOM NAVIGATION -->
     <nav class="fixed bottom-0 left-0 right-0 glass-panel border-t border-slate-800 px-6 py-2.5 z-40">
         <div class="max-w-md mx-auto flex justify-between items-center">
             <button onclick="switchTab('dashboard')" id="nav-dashboard" class="flex flex-col items-center gap-1 active-tab py-1 px-4">
@@ -292,37 +291,37 @@
             <form onsubmit="handleManualMealSubmit(event)" class="space-y-3">
                 <div>
                     <label class="block text-xs font-bold text-slate-300 mb-1">اسم الوجبة / الأكلة</label>
-                    <input type="text" id="meal-name" required placeholder="مثال: صدر دجاج 200غ مع أرز" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-zein-500">
+                    <input type="text" id="meal-name" required placeholder="مثال: صدر دجاج 200غ مع أرز" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-1">السعرات (kcal)</label>
-                        <input type="number" id="meal-calories" required placeholder="350" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-zein-500">
+                        <input type="number" id="meal-calories" required placeholder="350" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-1">البروتين (جرام)</label>
-                        <input type="number" id="meal-protein" value="0" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-zein-500">
+                        <input type="number" id="meal-protein" value="0" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-1">الكارب (جرام)</label>
-                        <input type="number" id="meal-carbs" value="0" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-zein-500">
+                        <input type="number" id="meal-carbs" value="0" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-1">الدهون (جرام)</label>
-                        <input type="number" id="meal-fat" value="0" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-zein-500">
+                        <input type="number" id="meal-fat" value="0" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
                     </div>
                 </div>
 
-                <button type="submit" class="w-full bg-zein-500 hover:bg-zein-600 font-black text-dark-950 py-3.5 rounded-xl transition mt-2">حفظ الوجبة فوراً</button>
+                <button type="submit" class="w-full bg-brand-500 hover:bg-brand-600 font-black text-dark-950 py-3.5 rounded-xl transition mt-2">حفظ الوجبة فوراً</button>
             </form>
         </div>
     </div>
 
-    <!-- MODAL: PROFILE SETTINGS -->
+    <!-- MODAL: EDIT PROFILE -->
     <div id="modal-profile" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden">
         <div class="glass-panel bg-slate-900 w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 space-y-4 border border-slate-800">
             <div class="flex justify-between items-center border-b border-slate-800 pb-3">
@@ -330,4 +329,4 @@
                 <button onclick="closeProfileModal()" class="text-slate-400 hover:text-white p-2"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
             
-            <form onsubmit="saveProfileSettings(even
+            <form onsubmit="saveProfileSettings(event
