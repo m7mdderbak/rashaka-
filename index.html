@@ -47,20 +47,20 @@
                 <p class="text-xs text-slate-400">أدخل بياناتك لحساب السعرات والعجز اليومي بدقة</p>
             </div>
 
-            <form id="form-onboarding" onsubmit="finishOnboarding(event)" class="glass-panel p-5 rounded-3xl space-y-4 border border-slate-800">
+            <div class="glass-panel p-5 rounded-3xl space-y-4 border border-slate-800">
                 <div>
                     <label class="block text-xs font-bold text-slate-300 mb-1">الوزن الحالي (كغم)</label>
-                    <input type="number" id="init-weight" required step="0.1" min="30" max="300" placeholder="مثال: 69" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-brand-500">
+                    <input type="number" id="init-weight" step="0.1" min="30" max="300" placeholder="مثال: 69" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-brand-500">
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-1">الطول (سم)</label>
-                        <input type="number" id="init-height" required min="100" max="250" placeholder="مثال: 166" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-brand-500">
+                        <input type="number" id="init-height" min="100" max="250" placeholder="مثال: 166" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-brand-500">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-1">العمر (سنوات)</label>
-                        <input type="number" id="init-age" required min="10" max="100" placeholder="مثال: 19" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-brand-500">
+                        <input type="number" id="init-age" min="10" max="100" placeholder="مثال: 19" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-brand-500">
                     </div>
                 </div>
 
@@ -83,10 +83,10 @@
                     </select>
                 </div>
 
-                <button type="submit" class="w-full bg-gradient-to-r from-brand-500 to-emerald-500 hover:from-brand-600 hover:to-emerald-600 font-black text-dark-950 py-3.5 rounded-2xl shadow-lg transition active:scale-95 text-sm mt-2">
+                <button type="button" onclick="finishOnboardingDirect()" class="w-full bg-gradient-to-r from-brand-500 to-emerald-500 hover:from-brand-600 hover:to-emerald-600 font-black text-dark-950 py-3.5 rounded-2xl shadow-lg transition active:scale-95 text-sm mt-2">
                     بدء استخدام تطبيق رشاقة AI <i class="fa-solid fa-arrow-left mr-1"></i>
                 </button>
-            </form>
+            </div>
         </div>
     </div>
 
@@ -235,15 +235,15 @@
                 <h3 class="font-bold text-lg text-white">إضافة وجبة أو أكلة جديدة</h3>
                 <button onclick="closeAddMealModal()" class="text-slate-400 hover:text-white p-2"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
-            <form onsubmit="handleMealSubmit(event)" class="space-y-3">
+            <div class="space-y-3">
                 <div>
                     <label class="block text-xs font-bold text-slate-300 mb-1">اسم الوجبة</label>
-                    <input type="text" id="meal-name" required placeholder="مثال: صدر دجاج مع أرز" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
+                    <input type="text" id="meal-name" placeholder="مثال: صدر دجاج مع أرز" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-1">السعرات (kcal)</label>
-                        <input type="number" id="meal-calories" required placeholder="350" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
+                        <input type="number" id="meal-calories" placeholder="350" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-1">البروتين (جرام)</label>
@@ -260,8 +260,8 @@
                         <input type="number" id="meal-fat" value="0" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
                     </div>
                 </div>
-                <button type="submit" class="w-full bg-brand-500 hover:bg-brand-600 font-black text-dark-950 py-3.5 rounded-xl transition mt-2">حفظ الوجبة</button>
-            </form>
+                <button type="button" onclick="handleMealSubmitDirect()" class="w-full bg-brand-500 hover:bg-brand-600 font-black text-dark-950 py-3.5 rounded-xl transition mt-2">حفظ الوجبة</button>
+            </div>
         </div>
     </div>
 
@@ -272,19 +272,19 @@
                 <h3 class="font-bold text-lg text-white">تعديل معلومات الجسم</h3>
                 <button onclick="closeProfileModal()" class="text-slate-400 hover:text-white p-2"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
-            <form onsubmit="saveProfileSettings(event)" class="space-y-3">
+            <div class="space-y-3">
                 <div class="grid grid-cols-3 gap-2">
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-1">الوزن</label>
-                        <input type="number" id="prof-weight" required step="0.1" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none focus:border-brand-500">
+                        <input type="number" id="prof-weight" step="0.1" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none focus:border-brand-500">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-1">الطول</label>
-                        <input type="number" id="prof-height" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none focus:border-brand-500">
+                        <input type="number" id="prof-height" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none focus:border-brand-500">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-1">العمر</label>
-                        <input type="number" id="prof-age" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none focus:border-brand-500">
+                        <input type="number" id="prof-age" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none focus:border-brand-500">
                     </div>
                 </div>
                 <div>
@@ -293,4 +293,8 @@
                         <option value="1.2">قليل الحركة</option>
                         <option value="1.375">متوسط</option>
                         <option value="1.55">نشيط</option>
-                        <option 
+                        <option value="1.725">نشيط جداً</option>
+                    </select>
+                </div>
+                <div>
+                    <label c
